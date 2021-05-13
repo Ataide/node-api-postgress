@@ -1,20 +1,21 @@
-import { Router } from 'express'
-import { getUsers } from './repositories/user-repository'
-import { createUserController } from './features/createUser'
+import { response, Router } from 'express'
+import { createUserController } from './features/users/createUser'
+import { listUserController } from './features/users/listUser'
  
 const router = Router()
 
 
-router.get('/', (request, response) => {
-    return response.json({
-        info: "API funcionando"
-    })
+router.get('/users', (request, response) => {
+    return listUserController.handle(request, response);
 })
 
 router.post('/users', (request, response) => {
     return createUserController.handle(request,response);
 })
 
-router.get('/users', getUsers);
+router.put('/users', (request, response) => {
+
+})
+
 
 export { router }

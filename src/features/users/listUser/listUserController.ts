@@ -1,19 +1,18 @@
 import { Request, Response } from "express";
-import { CreateUser } from "./createUser";
+import { ListUser } from "./listUser";
 
-export class CreateUserController {
+export class ListUserController {
     constructor(
-        private createUser: CreateUser
+        private listUser: ListUser
     ) { }
 
     async handle(request: Request, response: Response): Promise<Response> {
-        const {name, email, password} = request.body;
 
         try {
-            await this.createUser.execute({name,email,password});
-            return response.status(201).send();
+            const users = await this.listUser.execute();
+            return response.status(200).json(users);
 
-        }catch (err) {
+        } catch (err) {
             return response.status(400).json({
                 message: err.message || 'Unexpected error.'
               })        
