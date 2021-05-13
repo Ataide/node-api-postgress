@@ -1,5 +1,5 @@
 import { app } from '../app';
-import { createUser, getUsers } from '../repository/user-repository'
+import { createUser, getUsers } from '../repositories/user-repository'
 
 app.get('/users', getUsers)
 
